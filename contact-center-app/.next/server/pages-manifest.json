@@ -1,0 +1,6 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/agents": "pages/agents.js",
+  "/clients": "pages/clients.js"
+}
