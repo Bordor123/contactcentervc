@@ -110,19 +110,46 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
+;
 const Clients = ()=>{
     const [clients, setClients] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])([]);
+    const [filteredClients, setFilteredClients] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])([]);
     const [newClient, setNewClient] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])({
         name: '',
         joinedQueue: ''
     });
+    const [waitTimeFilter, setWaitTimeFilter] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])('all');
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         async function fetchClients() {
             const response = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$api$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["getClients"])();
             setClients(response.data);
+            setFilteredClients(response.data);
         }
         fetchClients();
     }, []);
+    // Filtra los clientes por tiempo de espera usando el waitTime proporcionado por el servicio
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (waitTimeFilter === 'all') {
+            setFilteredClients(clients);
+            return;
+        }
+        const filtered = clients.filter((client)=>{
+            switch(waitTimeFilter){
+                case 'lessThan5':
+                    return client.waitTime < 5;
+                case '5to15':
+                    return client.waitTime >= 5 && client.waitTime <= 15;
+                case 'moreThan15':
+                    return client.waitTime > 15;
+                default:
+                    return true;
+            }
+        });
+        setFilteredClients(filtered);
+    }, [
+        waitTimeFilter,
+        clients
+    ]);
     const handleAddClient = async ()=>{
         const response = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$api$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["addClient"])(newClient);
         setClients([
@@ -134,123 +161,307 @@ const Clients = ()=>{
             joinedQueue: ''
         });
     };
+    // Función para formatear la fecha en YYYY-MM-DD
+    const formatDate = (dateString)=>{
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0]; // Extrae solo YYYY-MM-DD
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-        style: styles.container,
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
-                style: styles.header,
-                children: "Clientes"
-            }, void 0, false, {
-                fileName: "[project]/pages/clients.tsx",
-                lineNumber: 30,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
-                style: styles.list,
-                children: clients.map((client)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
-                        style: styles.listItem,
-                        children: [
-                            client.name,
-                            " - ",
-                            client.joinedQueue
-                        ]
-                    }, client.id, true, {
-                        fileName: "[project]/pages/clients.tsx",
-                        lineNumber: 33,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
-                fileName: "[project]/pages/clients.tsx",
-                lineNumber: 31,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h2", {
-                        style: styles.subHeader,
-                        children: "Agregar Cliente"
-                    }, void 0, false, {
-                        fileName: "[project]/pages/clients.tsx",
-                        lineNumber: 39,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
-                        type: "text",
-                        value: newClient.name,
-                        onChange: (e)=>setNewClient({
-                                ...newClient,
-                                name: e.target.value
-                            }),
-                        placeholder: "Nombre",
-                        style: styles.input
-                    }, void 0, false, {
-                        fileName: "[project]/pages/clients.tsx",
-                        lineNumber: 40,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
-                        type: "datetime-local",
-                        value: newClient.joinedQueue,
-                        onChange: (e)=>setNewClient({
-                                ...newClient,
-                                joinedQueue: e.target.value
-                            }),
-                        style: styles.input
-                    }, void 0, false, {
-                        fileName: "[project]/pages/clients.tsx",
-                        lineNumber: 47,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
-                        onClick: handleAddClient,
-                        style: styles.button,
-                        children: "Agregar"
-                    }, void 0, false, {
-                        fileName: "[project]/pages/clients.tsx",
-                        lineNumber: 53,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/pages/clients.tsx",
-                lineNumber: 38,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
+        className: "container d-flex align-items-center justify-content-center min-vh-100",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+            className: "w-100",
+            style: {
+                maxWidth: '800px'
+            },
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
+                    className: "text-center mb-4",
+                    children: "Clientes"
+                }, void 0, false, {
+                    fileName: "[project]/pages/clients.tsx",
+                    lineNumber: 66,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                    className: "card mb-3",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                            className: "card-header",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h5", {
+                                className: "mb-0",
+                                children: "Filtrar por tiempo de espera"
+                            }, void 0, false, {
+                                fileName: "[project]/pages/clients.tsx",
+                                lineNumber: 71,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/pages/clients.tsx",
+                            lineNumber: 70,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                            className: "card-body",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                className: "d-flex gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        className: `btn ${waitTimeFilter === 'all' ? 'btn-primary' : 'btn-outline-primary'}`,
+                                        onClick: ()=>setWaitTimeFilter('all'),
+                                        children: "Todos"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/clients.tsx",
+                                        lineNumber: 75,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        className: `btn ${waitTimeFilter === 'lessThan5' ? 'btn-primary' : 'btn-outline-primary'}`,
+                                        onClick: ()=>setWaitTimeFilter('lessThan5'),
+                                        children: "< 5 min"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/clients.tsx",
+                                        lineNumber: 81,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        className: `btn ${waitTimeFilter === '5to15' ? 'btn-primary' : 'btn-outline-primary'}`,
+                                        onClick: ()=>setWaitTimeFilter('5to15'),
+                                        children: "5-15 min"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/clients.tsx",
+                                        lineNumber: 87,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        className: `btn ${waitTimeFilter === 'moreThan15' ? 'btn-primary' : 'btn-outline-primary'}`,
+                                        onClick: ()=>setWaitTimeFilter('moreThan15'),
+                                        children: "> 15 min"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/clients.tsx",
+                                        lineNumber: 93,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/pages/clients.tsx",
+                                lineNumber: 74,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/pages/clients.tsx",
+                            lineNumber: 73,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/pages/clients.tsx",
+                    lineNumber: 69,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                    className: "card mb-4",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                            className: "card-header",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h5", {
+                                className: "mb-0",
+                                children: "Lista de Clientes"
+                            }, void 0, false, {
+                                fileName: "[project]/pages/clients.tsx",
+                                lineNumber: 105,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/pages/clients.tsx",
+                            lineNumber: 104,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
+                            className: "list-group list-group-flush",
+                            children: filteredClients.map((client)=>{
+                                let badgeClass = "bg-success";
+                                if (client.waitTime > 15) {
+                                    badgeClass = "bg-danger";
+                                } else if (client.waitTime > 5) {
+                                    badgeClass = "bg-warning";
+                                }
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                    className: "list-group-item d-flex justify-content-between align-items-center",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                            children: client.name
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/clients.tsx",
+                                            lineNumber: 119,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                    className: "text-muted me-2",
+                                                    children: [
+                                                        "Desde: ",
+                                                        formatDate(client.joinedQueue)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/pages/clients.tsx",
+                                                    lineNumber: 121,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                                    className: `badge ${badgeClass}`,
+                                                    children: [
+                                                        client.waitTime,
+                                                        " minutos"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/pages/clients.tsx",
+                                                    lineNumber: 122,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/pages/clients.tsx",
+                                            lineNumber: 120,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, client.id, true, {
+                                    fileName: "[project]/pages/clients.tsx",
+                                    lineNumber: 118,
+                                    columnNumber: 17
+                                }, this);
+                            })
+                        }, void 0, false, {
+                            fileName: "[project]/pages/clients.tsx",
+                            lineNumber: 107,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/pages/clients.tsx",
+                    lineNumber: 103,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                    className: "card",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                            className: "card-header",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h5", {
+                                className: "mb-0",
+                                children: "Agregar Cliente"
+                            }, void 0, false, {
+                                fileName: "[project]/pages/clients.tsx",
+                                lineNumber: 134,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/pages/clients.tsx",
+                            lineNumber: 133,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                            className: "card-body",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                    className: "mb-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
+                                            htmlFor: "clientName",
+                                            className: "form-label",
+                                            children: "Nombre"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/clients.tsx",
+                                            lineNumber: 138,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
+                                            type: "text",
+                                            className: "form-control",
+                                            id: "clientName",
+                                            value: newClient.name,
+                                            onChange: (e)=>setNewClient({
+                                                    ...newClient,
+                                                    name: e.target.value
+                                                }),
+                                            placeholder: "Nombre del cliente"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/clients.tsx",
+                                            lineNumber: 139,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/pages/clients.tsx",
+                                    lineNumber: 137,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                    className: "mb-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
+                                            htmlFor: "joinDate",
+                                            className: "form-label",
+                                            children: "Fecha de Ingreso"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/clients.tsx",
+                                            lineNumber: 149,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
+                                            type: "date",
+                                            className: "form-control",
+                                            id: "joinDate",
+                                            value: newClient.joinedQueue.split('T')[0],
+                                            onChange: (e)=>setNewClient({
+                                                    ...newClient,
+                                                    joinedQueue: e.target.value
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/clients.tsx",
+                                            lineNumber: 150,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/pages/clients.tsx",
+                                    lineNumber: 148,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                    onClick: handleAddClient,
+                                    className: "btn btn-primary",
+                                    children: "Agregar Cliente"
+                                }, void 0, false, {
+                                    fileName: "[project]/pages/clients.tsx",
+                                    lineNumber: 158,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/pages/clients.tsx",
+                            lineNumber: 136,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/pages/clients.tsx",
+                    lineNumber: 132,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/pages/clients.tsx",
+            lineNumber: 65,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
         fileName: "[project]/pages/clients.tsx",
-        lineNumber: 29,
+        lineNumber: 64,
         columnNumber: 5
     }, this);
-};
-const styles = {
-    container: {
-        fontFamily: 'Arial, sans-serif',
-        padding: '20px'
-    },
-    header: {
-        fontSize: '2em',
-        marginBottom: '20px'
-    },
-    subHeader: {
-        fontSize: '1.5em',
-        marginBottom: '10px'
-    },
-    list: {
-        listStyleType: 'none',
-        padding: 0
-    },
-    listItem: {
-        marginBottom: '10px'
-    },
-    input: {
-        display: 'block',
-        marginBottom: '10px',
-        padding: '5px'
-    },
-    button: {
-        marginLeft: '10px'
-    }
 };
 const __TURBOPACK__default__export__ = Clients;
 __turbopack_async_result__();

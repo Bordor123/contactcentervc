@@ -41,14 +41,14 @@ namespace ContactCenter.API.Data
                     Id = 1, 
                     Name = "Client 1", 
                     JoinedQueue = staticDate,
-                    WaitTime = 5 // Valor inicial de ejemplo
+                    WaitTime = 5
                 },
                 new Client 
                 { 
                     Id = 2, 
                     Name = "Client 2", 
                     JoinedQueue = staticDate,
-                    WaitTime = 10 // Valor inicial de ejemplo
+                    WaitTime = 10
                 }
             );
         }

@@ -597,18 +597,43 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$api$2e$js__$5b$c
 var _s = __turbopack_refresh__.signature();
 ;
 ;
+;
 const Agents = ()=>{
     _s();
     const [agents, setAgents] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [filteredAgents, setFilteredAgents] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [statusFilter, setStatusFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Agents.useEffect": ()=>{
             async function fetchAgents() {
                 const response = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$api$2e$js__$5b$client$5d$__$28$ecmascript$29$__["getAgents"])();
-                setAgents(response.data);
+                // Asumiendo que el API devuelve waitTime o lo calculamos aquí
+                const agentsWithWaitTime = response.data.map({
+                    "Agents.useEffect.fetchAgents.agentsWithWaitTime": (agent)=>({
+                            ...agent,
+                            waitTime: agent.waitTime || Math.floor(Math.random() * 60) // Simulación para ejemplo
+                        })
+                }["Agents.useEffect.fetchAgents.agentsWithWaitTime"]);
+                setAgents(agentsWithWaitTime);
+                setFilteredAgents(agentsWithWaitTime);
             }
             fetchAgents();
         }
     }["Agents.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Agents.useEffect": ()=>{
+            if (statusFilter === null) {
+                setFilteredAgents(agents);
+            } else {
+                setFilteredAgents(agents.filter({
+                    "Agents.useEffect": (agent)=>agent.status === statusFilter
+                }["Agents.useEffect"]));
+            }
+        }
+    }["Agents.useEffect"], [
+        statusFilter,
+        agents
+    ]);
     const handleStatusChange = async (id, status)=>{
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$api$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateAgentStatus"])(id, status);
         const updatedAgents = agents.map((agent)=>agent.id === id ? {
@@ -617,86 +642,206 @@ const Agents = ()=>{
             } : agent);
         setAgents(updatedAgents);
     };
+    const getStatusText = (status)=>{
+        switch(status){
+            case 1:
+                return 'Disponible';
+            case 2:
+                return 'En Llamada';
+            default:
+                return 'Desconocido';
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        style: styles.container,
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                style: styles.header,
-                children: "Agentes"
-            }, void 0, false, {
-                fileName: "[project]/pages/agents.tsx",
-                lineNumber: 31,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                style: styles.list,
-                children: agents.map((agent)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                        style: styles.listItem,
-                        children: [
-                            agent.name,
-                            " - ",
-                            agent.status,
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                style: styles.button,
-                                onClick: ()=>handleStatusChange(agent.id, 1),
-                                children: "Disponible"
+        className: "container d-flex align-items-center justify-content-center min-vh-100",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "w-100",
+            style: {
+                maxWidth: '800px'
+            },
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                    className: "text-center mb-4",
+                    children: "Agentes"
+                }, void 0, false, {
+                    fileName: "[project]/pages/agents.tsx",
+                    lineNumber: 58,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "card mb-3",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "card-header",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
+                                className: "mb-0",
+                                children: "Filtros"
                             }, void 0, false, {
                                 fileName: "[project]/pages/agents.tsx",
-                                lineNumber: 36,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                style: styles.button,
-                                onClick: ()=>handleStatusChange(agent.id, 2),
-                                children: "En Llamada"
-                            }, void 0, false, {
-                                fileName: "[project]/pages/agents.tsx",
-                                lineNumber: 37,
+                                lineNumber: 63,
                                 columnNumber: 13
                             }, this)
-                        ]
-                    }, agent.id, true, {
-                        fileName: "[project]/pages/agents.tsx",
-                        lineNumber: 34,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
-                fileName: "[project]/pages/agents.tsx",
-                lineNumber: 32,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
+                        }, void 0, false, {
+                            fileName: "[project]/pages/agents.tsx",
+                            lineNumber: 62,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "card-body",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "d-flex gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        className: `btn ${statusFilter === null ? 'btn-primary' : 'btn-outline-primary'}`,
+                                        onClick: ()=>setStatusFilter(null),
+                                        children: "Todos"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/agents.tsx",
+                                        lineNumber: 67,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        className: `btn ${statusFilter === 1 ? 'btn-success' : 'btn-outline-success'}`,
+                                        onClick: ()=>setStatusFilter(1),
+                                        children: "Disponibles"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/agents.tsx",
+                                        lineNumber: 73,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        className: `btn ${statusFilter === 2 ? 'btn-warning' : 'btn-outline-warning'}`,
+                                        onClick: ()=>setStatusFilter(2),
+                                        children: "En Llamada"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/agents.tsx",
+                                        lineNumber: 79,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/pages/agents.tsx",
+                                lineNumber: 66,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/pages/agents.tsx",
+                            lineNumber: 65,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/pages/agents.tsx",
+                    lineNumber: 61,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                    className: "list-group p-0",
+                    children: filteredAgents.map((agent)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                            className: "list-group-item d-flex justify-content-between align-items-center mb-2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                children: agent.name
+                                            }, void 0, false, {
+                                                fileName: "[project]/pages/agents.tsx",
+                                                lineNumber: 93,
+                                                columnNumber: 22
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/agents.tsx",
+                                            lineNumber: 93,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: `badge ${agent.status === 1 ? 'bg-success' : 'bg-warning'} me-2`,
+                                                    children: getStatusText(agent.status)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/agents.tsx",
+                                                    lineNumber: 95,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-muted",
+                                                    children: [
+                                                        "Tiempo en espera: ",
+                                                        agent.waitTime,
+                                                        " min"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/pages/agents.tsx",
+                                                    lineNumber: 98,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/pages/agents.tsx",
+                                            lineNumber: 94,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/pages/agents.tsx",
+                                    lineNumber: 92,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            className: "btn btn-success btn-sm me-2",
+                                            onClick: ()=>handleStatusChange(agent.id, 1),
+                                            disabled: agent.status === 1,
+                                            children: "Disponible"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/agents.tsx",
+                                            lineNumber: 104,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            className: "btn btn-warning btn-sm",
+                                            onClick: ()=>handleStatusChange(agent.id, 2),
+                                            disabled: agent.status === 2,
+                                            children: "En Llamada"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/agents.tsx",
+                                            lineNumber: 111,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/pages/agents.tsx",
+                                    lineNumber: 103,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, agent.id, true, {
+                            fileName: "[project]/pages/agents.tsx",
+                            lineNumber: 91,
+                            columnNumber: 13
+                        }, this))
+                }, void 0, false, {
+                    fileName: "[project]/pages/agents.tsx",
+                    lineNumber: 89,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/pages/agents.tsx",
+            lineNumber: 57,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
         fileName: "[project]/pages/agents.tsx",
-        lineNumber: 30,
+        lineNumber: 56,
         columnNumber: 5
     }, this);
 };
-_s(Agents, "+GblVrslcY4TzRx2zoeLk69iwxw=");
+_s(Agents, "FeXlbktJrh6zSjR5Cv+SsZl58Yw=");
 _c = Agents;
-const styles = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    container: {
-        fontFamily: 'Arial, sans-serif',
-        padding: '20px'
-    },
-    header: {
-        fontSize: '2em',
-        marginBottom: '20px'
-    },
-    list: {
-        listStyleType: 'none',
-        padding: 0
-    },
-    listItem: {
-        marginBottom: '10px'
-    },
-    button: {
-        marginLeft: '10px'
-    }
-};
 const __TURBOPACK__default__export__ = Agents;
 var _c;
 __turbopack_refresh__.register(_c, "Agents");
