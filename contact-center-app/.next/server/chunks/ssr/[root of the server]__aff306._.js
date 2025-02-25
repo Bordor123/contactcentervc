@@ -118,10 +118,9 @@ const Agents = ()=>{
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         async function fetchAgents() {
             const response = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$api$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["getAgents"])();
-            // Asumiendo que el API devuelve waitTime o lo calculamos aquí
             const agentsWithWaitTime = response.data.map((agent)=>({
                     ...agent,
-                    waitTime: agent.waitTime || Math.floor(Math.random() * 60) // Simulación para ejemplo
+                    waitTime: agent.waitTime || Math.floor(Math.random() * 60)
                 }));
             setAgents(agentsWithWaitTime);
             setFilteredAgents(agentsWithWaitTime);
@@ -169,7 +168,7 @@ const Agents = ()=>{
                     children: "Agentes"
                 }, void 0, false, {
                     fileName: "[project]/pages/agents.tsx",
-                    lineNumber: 58,
+                    lineNumber: 57,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -182,12 +181,12 @@ const Agents = ()=>{
                                 children: "Filtros"
                             }, void 0, false, {
                                 fileName: "[project]/pages/agents.tsx",
-                                lineNumber: 63,
+                                lineNumber: 61,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/agents.tsx",
-                            lineNumber: 62,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -201,7 +200,7 @@ const Agents = ()=>{
                                         children: "Todos"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/agents.tsx",
-                                        lineNumber: 67,
+                                        lineNumber: 65,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -210,7 +209,7 @@ const Agents = ()=>{
                                         children: "Disponibles"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/agents.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 71,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -219,24 +218,24 @@ const Agents = ()=>{
                                         children: "En Llamada"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/agents.tsx",
-                                        lineNumber: 79,
+                                        lineNumber: 77,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/agents.tsx",
-                                lineNumber: 66,
+                                lineNumber: 64,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/agents.tsx",
-                            lineNumber: 65,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/agents.tsx",
-                    lineNumber: 61,
+                    lineNumber: 59,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
@@ -251,12 +250,12 @@ const Agents = ()=>{
                                                 children: agent.name
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/agents.tsx",
-                                                lineNumber: 93,
+                                                lineNumber: 91,
                                                 columnNumber: 22
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/pages/agents.tsx",
-                                            lineNumber: 93,
+                                            lineNumber: 91,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -266,7 +265,7 @@ const Agents = ()=>{
                                                     children: getStatusText(agent.status)
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/agents.tsx",
-                                                    lineNumber: 95,
+                                                    lineNumber: 93,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -278,19 +277,19 @@ const Agents = ()=>{
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/agents.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 96,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/agents.tsx",
-                                            lineNumber: 94,
+                                            lineNumber: 92,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/agents.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 90,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -302,7 +301,7 @@ const Agents = ()=>{
                                             children: "Disponible"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/agents.tsx",
-                                            lineNumber: 104,
+                                            lineNumber: 102,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -312,35 +311,35 @@ const Agents = ()=>{
                                             children: "En Llamada"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/agents.tsx",
-                                            lineNumber: 111,
+                                            lineNumber: 109,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/agents.tsx",
-                                    lineNumber: 103,
+                                    lineNumber: 101,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, agent.id, true, {
                             fileName: "[project]/pages/agents.tsx",
-                            lineNumber: 91,
+                            lineNumber: 89,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/pages/agents.tsx",
-                    lineNumber: 89,
+                    lineNumber: 87,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/pages/agents.tsx",
-            lineNumber: 57,
+            lineNumber: 56,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/pages/agents.tsx",
-        lineNumber: 56,
+        lineNumber: 55,
         columnNumber: 5
     }, this);
 };

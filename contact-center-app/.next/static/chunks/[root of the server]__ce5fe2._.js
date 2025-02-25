@@ -655,11 +655,10 @@ const Clients = ()=>{
             joinedQueue: ''
         });
     };
-    // Función para formatear la fecha en YYYY-MM-DD
     const formatDate = (dateString)=>{
         if (!dateString) return '';
         const date = new Date(dateString);
-        return date.toISOString().split('T')[0]; // Extrae solo YYYY-MM-DD
+        return date.toISOString().split('T')[0];
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "container d-flex align-items-center justify-content-center min-vh-100",
@@ -674,7 +673,7 @@ const Clients = ()=>{
                     children: "Clientes"
                 }, void 0, false, {
                     fileName: "[project]/pages/clients.tsx",
-                    lineNumber: 66,
+                    lineNumber: 65,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -687,12 +686,12 @@ const Clients = ()=>{
                                 children: "Filtrar por tiempo de espera"
                             }, void 0, false, {
                                 fileName: "[project]/pages/clients.tsx",
-                                lineNumber: 71,
+                                lineNumber: 69,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/clients.tsx",
-                            lineNumber: 70,
+                            lineNumber: 68,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -706,7 +705,7 @@ const Clients = ()=>{
                                         children: "Todos"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/clients.tsx",
-                                        lineNumber: 75,
+                                        lineNumber: 73,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -715,7 +714,7 @@ const Clients = ()=>{
                                         children: "< 5 min"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/clients.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 79,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -724,7 +723,7 @@ const Clients = ()=>{
                                         children: "5-15 min"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/clients.tsx",
-                                        lineNumber: 87,
+                                        lineNumber: 85,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -733,24 +732,24 @@ const Clients = ()=>{
                                         children: "> 15 min"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/clients.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 91,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/clients.tsx",
-                                lineNumber: 74,
+                                lineNumber: 72,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/clients.tsx",
-                            lineNumber: 73,
+                            lineNumber: 71,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/clients.tsx",
-                    lineNumber: 69,
+                    lineNumber: 67,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -763,12 +762,12 @@ const Clients = ()=>{
                                 children: "Lista de Clientes"
                             }, void 0, false, {
                                 fileName: "[project]/pages/clients.tsx",
-                                lineNumber: 105,
+                                lineNumber: 103,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/clients.tsx",
-                            lineNumber: 104,
+                            lineNumber: 102,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -787,7 +786,7 @@ const Clients = ()=>{
                                             children: client.name
                                         }, void 0, false, {
                                             fileName: "[project]/pages/clients.tsx",
-                                            lineNumber: 119,
+                                            lineNumber: 117,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -800,7 +799,7 @@ const Clients = ()=>{
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/clients.tsx",
-                                                    lineNumber: 121,
+                                                    lineNumber: 119,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -811,31 +810,31 @@ const Clients = ()=>{
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/clients.tsx",
-                                                    lineNumber: 122,
+                                                    lineNumber: 120,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/clients.tsx",
-                                            lineNumber: 120,
+                                            lineNumber: 118,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, client.id, true, {
                                     fileName: "[project]/pages/clients.tsx",
-                                    lineNumber: 118,
+                                    lineNumber: 116,
                                     columnNumber: 17
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/pages/clients.tsx",
-                            lineNumber: 107,
+                            lineNumber: 105,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/clients.tsx",
-                    lineNumber: 103,
+                    lineNumber: 101,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -848,12 +847,12 @@ const Clients = ()=>{
                                 children: "Agregar Cliente"
                             }, void 0, false, {
                                 fileName: "[project]/pages/clients.tsx",
-                                lineNumber: 134,
+                                lineNumber: 132,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/clients.tsx",
-                            lineNumber: 133,
+                            lineNumber: 131,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -868,7 +867,7 @@ const Clients = ()=>{
                                             children: "Nombre"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/clients.tsx",
-                                            lineNumber: 138,
+                                            lineNumber: 136,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -883,13 +882,13 @@ const Clients = ()=>{
                                             placeholder: "Nombre del cliente"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/clients.tsx",
-                                            lineNumber: 139,
+                                            lineNumber: 137,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/clients.tsx",
-                                    lineNumber: 137,
+                                    lineNumber: 135,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -901,7 +900,7 @@ const Clients = ()=>{
                                             children: "Fecha de Ingreso"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/clients.tsx",
-                                            lineNumber: 149,
+                                            lineNumber: 147,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -915,13 +914,13 @@ const Clients = ()=>{
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/pages/clients.tsx",
-                                            lineNumber: 150,
+                                            lineNumber: 148,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/clients.tsx",
-                                    lineNumber: 148,
+                                    lineNumber: 146,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -930,30 +929,30 @@ const Clients = ()=>{
                                     children: "Agregar Cliente"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/clients.tsx",
-                                    lineNumber: 158,
+                                    lineNumber: 156,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/clients.tsx",
-                            lineNumber: 136,
+                            lineNumber: 134,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/clients.tsx",
-                    lineNumber: 132,
+                    lineNumber: 130,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/pages/clients.tsx",
-            lineNumber: 65,
+            lineNumber: 64,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/pages/clients.tsx",
-        lineNumber: 64,
+        lineNumber: 63,
         columnNumber: 5
     }, this);
 };
